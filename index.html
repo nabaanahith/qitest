@@ -1,0 +1,62 @@
+<html>
+    <head>
+      
+<script src="https://test-gateway.mastercard.com/checkout/version/55/checkout.js"
+data-cancel="cancelCallback"
+data-beforeRedirect="Checkout.saveFormFields"
+data-afterRedirect="Checkout.restoreFormFields">
+</script>
+
+<script>
+function cancelCallback() { 
+ confirm('Are you sure you want to cancel?');
+// code to manage payer interaction
+}
+// or if you want to provide a URL:
+// cancelCallback = "someURL"
+</script>
+</script>
+        </script>
+
+        <script type="text/javascript">
+            function errorCallback(error) {
+                  console.log(JSON.stringify(error));
+            }
+            function cancelCallback() {
+                  console.log('Payment cancelled');
+            }
+
+            Checkout.configure({
+            merchant: 'ISCTEST001',
+            order: {
+                amount: function () {
+                    return 100;
+                },
+                currency: 'USD',
+                description: 'Ordered goods',
+                id: '1011'
+            },
+            interaction: {
+                operation:"PURCHASE",
+
+                merchant: {
+                    name: 'Qi_Mater Mobile',
+                    address: {
+                        line1: '200 Sample St',
+                        line2: '1234 Example Town'
+                    }
+                }
+            },
+            session: {
+                id: "SESSION0002990374770K91830981E8"
+            }
+        });
+        </script>
+    </head>
+    <body>
+     
+        <input type="button" value="Qi_Pay with Lightbox" onclick="Checkout.showLightbox();" />
+        <input type="button" value="QI_Pay with Payment Page" onclick="Checkout.showPaymentPage();" />
+      
+    </body>
+</html>
